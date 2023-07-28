@@ -23,3 +23,34 @@ class ChargesCreateAPIView(generics.CreateAPIView):
     queryset = Charges.objects.all()
     serializer_class = ChargesSerializer
     
+class FloorCreateAPIView(generics.CreateAPIView):
+    queryset = Floor.objects.all()
+    serializer_class = FloorSerializer
+    
+class BedTypeCreateAPIView(generics.CreateAPIView):
+    queryset = BedType.objects.all()
+    serializer_class = BedTypeSerializer
+    
+class BedGroupCreateAPIView(generics.CreateAPIView):
+    queryset = BedGroup.objects.all()
+    serializer_class = BedGroupSerializer
+    
+class BedCreateAPIView(generics.CreateAPIView):
+    queryset = Bed.objects.all()
+    serializer_class = BedSerializer
+
+class PriorityCreateAPIView(generics.CreateAPIView):
+    queryset = Priority.objects.all()
+    serializer_class = PrioritySerializer
+    
+class SourceCreateAPIView(generics.CreateAPIView):
+    queryset = Source.objects.all()
+    serializer_class = SourceSerializer
+    
+class ComplainTypeCreateAPIView(generics.CreateAPIView):
+    queryset = ComplainType.objects.all()
+    serializer_class = ComplainTypeSerializer
+    
+class PurposeCreateAPIView(generics.CreateAPIView):
+    queryset = Purpose.objects.all()
+    serializer_class = PurposeSerializer   

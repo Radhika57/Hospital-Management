@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from colorfield.fields import ColorField
 
 class UnitType(models.Model):
     name = models.CharField(max_length=20)
@@ -59,3 +60,61 @@ def update_tax_percentage(sender, instance, **kwargs):
         tax_percentage = instance.tax_category.percentage
         # Update the tax field with the retrieved tax percentage
         instance.tax = tax_percentage 
+        
+class Floor(models.Model):
+    name = models.CharField(max_length=20)
+    description = models.TextField()
+    
+    def __str__(self):
+        return self.name
+    
+class BedGroup(models.Model):
+    name = models.CharField(max_length=20)
+    floor = models.ForeignKey(Floor,on_delete=models.CASCADE)
+    color = ColorField(default='#000000')   
+    description = models.TextField()
+    
+    def __str__(self):
+        return f"{self.name}-{self.floor.name}"
+    
+class BedType(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+    
+class Bed(models.Model):
+    name = models.CharField(max_length=20)
+    bed_type = models.ForeignKey(BedType,on_delete=models.CASCADE)
+    bed_group = models.ForeignKey(BedGroup,on_delete=models.CASCADE)
+    unused = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.name
+    
+class Priority(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+    
+class Source(models.Model):
+    name = models.CharField(max_length=20)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+    
+class ComplainType(models.Model):
+    complain_type = models.CharField(max_length=20)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.complain_type
+    
+class Purpose(models.Model):
+    purpose = models.CharField(max_length=20)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.purpose

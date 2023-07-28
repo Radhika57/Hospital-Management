@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'settings',
+    'colorfield',
+    'corsheaders',
 
 ]
 
@@ -52,7 +54,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    # Add any other allowed origins if needed
+]
+
+CORS_ALLOW_URLS_REGEX = r'^/api/login/.*$'
 
 ROOT_URLCONF = 'Hospital.urls'
 

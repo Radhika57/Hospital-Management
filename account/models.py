@@ -116,7 +116,7 @@ class Patient(models.Model):
     day = models.PositiveIntegerField()
     blood_group = models.CharField(max_length=10,choices=BLOOD_CHOICES,default="Select")
     marital_status = models.CharField(max_length=20,choices=MARITAL_CHOICES,default="Select")
-    patient_image = models.ImageField(upload_to='images/patient/')
+    patient_image = models.ImageField(upload_to='images/patient/',null=True,blank=True)
     phone = models.CharField(max_length=20)
     email = models.EmailField(unique=True)
     address = models.CharField(max_length=100)
