@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -234,6 +234,10 @@ class AppointmentCreateView(generics.CreateAPIView):
         return CustomUser.objects.filter(user_type='doctor')
 
 class PatientCreateView(generics.CreateAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+    
+class PatientListView(ListAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
     
