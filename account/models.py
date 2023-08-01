@@ -66,13 +66,13 @@ CONSULTANT_CHOICES =  [
 class Appointment(models.Model):
     doctor = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     doctor_fees = models.FloatField(default=200.0)
-    shift = models.CharField(max_length=20,choices=SHIFT_CHOICES,default="Select")
+    shift = models.CharField(max_length=20,choices=SHIFT_CHOICES,default="select")
     appointment_date = models.DateTimeField(auto_now_add=False,auto_created=False)
-    slot = models.CharField(max_length=20,choices=SLOT_CHOICES,default="Select")
-    appointment_priority = models.CharField(max_length=20,choices=APPOINTMENT_CHOICES,default="Normal")
-    payment_mode = models.CharField(max_length=40,choices=STATUS_CHOICES,default="Select")
+    slot = models.CharField(max_length=20,choices=SLOT_CHOICES,default="select")
+    appointment_priority = models.CharField(max_length=20,choices=APPOINTMENT_CHOICES,default="normal")
+    payment_mode = models.CharField(max_length=40,choices=STATUS_CHOICES,default="select")
     message = models.TextField()
-    live_consultant = models.CharField(max_length=10, choices=CONSULTANT_CHOICES,default="Select")
+    live_consultant = models.CharField(max_length=10, choices=CONSULTANT_CHOICES,default="select")
     alternate_address = models.TextField()
 
     def __str__(self):
@@ -109,13 +109,13 @@ MARITAL_CHOICES = [
 class Patient(models.Model):
     name = models.CharField(max_length=30) 
     guardian_name = models.CharField(max_length=30)
-    gender = models.CharField(max_length=20,choices=GENDER_CHOICES,default="Select")
+    gender = models.CharField(max_length=20,choices=GENDER_CHOICES,default="select")
     date_of_birth = models.DateField(auto_created=False)
     year = models.PositiveIntegerField()
     month = models.PositiveIntegerField()
     day = models.PositiveIntegerField()
-    blood_group = models.CharField(max_length=10,choices=BLOOD_CHOICES,default="Select")
-    marital_status = models.CharField(max_length=20,choices=MARITAL_CHOICES,default="Select")
+    blood_group = models.CharField(max_length=10,choices=BLOOD_CHOICES,default="select")
+    marital_status = models.CharField(max_length=20,choices=MARITAL_CHOICES,default="select")
     patient_image = models.ImageField(upload_to='images/patient/',null=True,blank=True)
     phone = models.CharField(max_length=20)
     email = models.EmailField(unique=True)
@@ -393,7 +393,7 @@ class Platelets(models.Model):
     platelets = models.BooleanField(default=False)
     bag = models.CharField(max_length=20,null=True,blank=True)
     volume = models.CharField(max_length=20,null=True,blank=True)
-    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="Select")
+    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="select")
     lot = models.CharField(max_length=20,null=True,blank=True)
     institution = models.CharField(max_length=200,null=True,blank=True)
     
@@ -401,7 +401,7 @@ class Plasma(models.Model):
     plasma = models.BooleanField(default=False)
     bag = models.CharField(max_length=20,null=True,blank=True)
     volume = models.CharField(max_length=20,null=True,blank=True)
-    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="Select")
+    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="select")
     lot = models.CharField(max_length=20,null=True,blank=True)
     institution = models.CharField(max_length=200,null=True,blank=True)
     
@@ -409,7 +409,7 @@ class Cryodot(models.Model):
     cryodot = models.BooleanField(default=False)
     bag = models.CharField(max_length=20,null=True,blank=True)
     volume = models.CharField(max_length=20,null=True,blank=True)
-    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="Select")
+    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="select")
     lot = models.CharField(max_length=20,null=True,blank=True)
     institution = models.CharField(max_length=200,null=True,blank=True)
     
@@ -417,7 +417,7 @@ class WhiteCells(models.Model):
     whitecells = models.BooleanField(default=False)
     bag = models.CharField(max_length=20,null=True,blank=True)
     volume = models.CharField(max_length=20,null=True,blank=True)
-    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="Select")
+    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="select")
     lot = models.CharField(max_length=20,null=True,blank=True)
     institution = models.CharField(max_length=200,null=True,blank=True)
     
@@ -425,7 +425,7 @@ class RedCells(models.Model):
     redcells = models.BooleanField(default=False)
     bag = models.CharField(max_length=20,null=True,blank=True)
     volume = models.CharField(max_length=20,null=True,blank=True)
-    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="Select")
+    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="select")
     lot = models.CharField(max_length=20,null=True,blank=True)
     institution = models.CharField(max_length=200,null=True,blank=True)
     
@@ -433,7 +433,7 @@ class Cryo(models.Model):
     platelets = models.BooleanField(default=False)
     bag = models.CharField(max_length=20,null=True,blank=True)
     volume = models.CharField(max_length=20,null=True,blank=True)
-    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="Select")
+    unit = models.CharField(max_length=20,choices=UNIT_CHOICES,default="select")
     lot = models.CharField(max_length=20,null=True,blank=True)
     institution = models.CharField(max_length=200,null=True,blank=True)
     
@@ -463,7 +463,7 @@ class Ambulance(models.Model):
     driver_name = models.CharField(max_length=40)
     driver_license = models.CharField(max_length=40)
     driver_contact = models.CharField(max_length=20)
-    vehicle_type = models.CharField(max_length=40,choices=VEHICLE_CHOICES,default="Select")
+    vehicle_type = models.CharField(max_length=40,choices=VEHICLE_CHOICES,default="select")
     note = models.TextField()
     
     def __str__(self):
@@ -489,11 +489,11 @@ CALL_CHOICES =[
 ]
 
 class Visitor(models.Model):
-    purpose = models.CharField(max_length=20,choices=PURPOSE_CHOICES,default="Select")
+    purpose = models.CharField(max_length=20,choices=PURPOSE_CHOICES,default="select")
     name = models.CharField(max_length=40)
     phone = models.CharField(max_length=40)
     id_card = models.CharField(max_length=40)
-    visit_to = models.CharField(max_length=40,choices=VISIT_CHOICES,default="Select")
+    visit_to = models.CharField(max_length=40,choices=VISIT_CHOICES,default="select")
     related_to = models.CharField(max_length=40)
     number_of_person = models.PositiveIntegerField()
     date = models.DateField(auto_created=False)
@@ -558,8 +558,8 @@ SOURCE_CHOICES =[
 ]
 
 class Complain(models.Model):
-    complain_type = models.CharField(max_length=40,choices=COMPLAIN_CHOICES,default="Select")
-    source = models.CharField(max_length=20,choices=SOURCE_CHOICES,default="Select")
+    complain_type = models.CharField(max_length=40,choices=COMPLAIN_CHOICES,default="select")
+    source = models.CharField(max_length=20,choices=SOURCE_CHOICES,default="select")
     complain_by = models.CharField(max_length=40)
     phone = models.CharField(max_length=40)
     date = models.DateField(auto_created=False)
@@ -574,7 +574,7 @@ class Complain(models.Model):
     
 class BirthRecord(models.Model):
     child_name = models.CharField(max_length=40)
-    gender = models.CharField(max_length=20,choices=GENDER_CHOICES,default="Select")
+    gender = models.CharField(max_length=20,choices=GENDER_CHOICES,default="select")
     weight = models.CharField(max_length=40)
     child_photo = models.ImageField(upload_to='images/birthrecord/child/')
     date_of_birth = models.DateTimeField(auto_created=False)
@@ -612,7 +612,7 @@ INCOME_HEAD_CHOICES =[
 ]
     
 class Income(models.Model):
-    income_head = models.CharField(max_length=60,choices=INCOME_HEAD_CHOICES,default="Select")
+    income_head = models.CharField(max_length=60,choices=INCOME_HEAD_CHOICES,default="select")
     name = models.CharField(max_length=100)
     invoice_number = models.CharField(max_length=40)
     date = models.DateField(auto_created=False)

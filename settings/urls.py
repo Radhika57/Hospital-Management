@@ -41,5 +41,45 @@ urlpatterns = [
     path('api/create-purpose/', PurposeCreateAPIView.as_view(), name='create_purpose'),
     path('api/purpose/', PurposeListView.as_view(), name='purpose-list'),
     
+    path('api/create-operationcategory/', OperationCategoryCreateAPIView.as_view(), name='create_operationcategory'),
+    path('api/operationcategory/', OperationCategoryListView.as_view(), name='operationcategory-list'),
+    
+    path('api/create-operation/', OperationCreateAPIView.as_view(), name='create_operation'),
+    path('api/operation/', OperationListView.as_view(), name='operation-list'),
+    
+    path('api/create-medicinedosage/', MedicineDosageCreateAPIView.as_view(), name='create_medicinedosage'),
+    path('api/medicinedosage/', MedicineDosageListView.as_view(), name='medicinedosage-list'),
 
+    path('api/create-dosageinterval/', DosageIntervalCreateAPIView.as_view(), name='create_dosageinterval'),
+    path('api/dosageinterval/', DosageIntervalListView.as_view(), name='dosageinterval-list'),
+    
+    path('api/create-dosageduration/', DosageDurationCreateAPIView.as_view(), name='create_dosageduration'),
+    path('api/dosageduration/', DosageDurationListView.as_view(), name='dosageduration-list'),
+    
+    path('api/create-pathologycategory/', PathologyCategoryCreateAPIView.as_view(), name='create_pathologycategory'),
+    path('api/pathologycategory/', PathologyCategoryListView.as_view(), name='pathologycategory-list'),
+
+    path('api/create-pathologyunit/', PathologyUnitCreateAPIView.as_view(), name='create_pathologyunit'),
+    path('api/pathologyunit/', PathologyUnitListView.as_view(), name='pathologyunit-list'),
+    
+    path('api/create-pathologyparameter/', PathologyParameterCreateAPIView.as_view(), name='create_pathologyparameter'),
+    path('api/pathologyparameter/', PathologyParameterListView.as_view(), name='pathologyparameter-list'),
+    
+    path('api/create-radiologycategory/', RadiologyCategoryCreateAPIView.as_view(), name='create_radiologycategory'),
+    path('api/radiologycategory/', RadiologyCategoryListView.as_view(), name='radiologycategory-list'),
+
+    path('api/create-radiologyunit/', RadiologyUnitCreateAPIView.as_view(), name='create_radiologyunit'),
+    path('api/radiologyunit/', RadiologyUnitListView.as_view(), name='radiologyunit-list'),
+    
+    path('api/create-radiologyparameter/', RadiologyParameterCreateAPIView.as_view(), name='create_radiologyparameter'),
+    path('api/radiologyparameter/', RadiologyParameterListView.as_view(), name='radiologyparameter-list'),
+    
+    path('api/create-bloodbankproducts/', BloodBankProductCreateAPIView.as_view(), name='create_bloodbankproducts'),
+    path('api/bloodbankproducts/', BloodBankProductListView.as_view(), name='bloodbankproducts-list'),
+    
+    path('api/create-symptomstype/', SymptomsTypeCreateAPIView.as_view(), name='create_symptomstype'),
+    path('api/symptomstype/', SymptomsTypeListView.as_view(), name='symptomstype-list'),
+    
+    path('api/create-symptomshead/', SymptomsHeadCreateAPIView.as_view(), name='create_symptomshead'),
+    path('api/symptomshead/', SymptomsHeadListView.as_view(), name='symptomshead-list'),
 ]

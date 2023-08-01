@@ -107,3 +107,115 @@ class PurposeCreateAPIView(generics.CreateAPIView):
 class PurposeListView(ListAPIView):
     queryset = Purpose.objects.all()
     serializer_class = PurposeSerializer
+    
+class OperationCategoryCreateAPIView(generics.CreateAPIView):
+    queryset = OperationCategory.objects.all()
+    serializer_class = OperationCategorySerializer   
+
+class OperationCategoryListView(ListAPIView):
+    queryset = OperationCategory.objects.all()
+    serializer_class = OperationCategorySerializer
+    
+class OperationCreateAPIView(generics.CreateAPIView):
+    queryset = Operation.objects.all()
+    serializer_class = OperationSerializer   
+
+class OperationListView(ListAPIView):
+    queryset = Operation.objects.all()
+    serializer_class = OperationSerializer
+    
+class MedicineDosageCreateAPIView(generics.CreateAPIView):
+    queryset = MedicineDosage.objects.all()
+    serializer_class = MedicineDosageSerializer
+    
+class MedicineDosageListView(ListAPIView):
+    queryset = MedicineDosage.objects.all()
+    serializer_class = MedicineDosageSerializer
+    
+class DosageIntervalCreateAPIView(generics.CreateAPIView):
+    queryset = DosageInterval.objects.all()
+    serializer_class = DosageIntervalSerializer
+    
+class DosageIntervalListView(ListAPIView):
+    queryset = DosageInterval.objects.all()
+    serializer_class = DosageIntervalSerializer
+    
+class DosageDurationCreateAPIView(generics.CreateAPIView):
+    queryset = DosageDuration.objects.all()
+    serializer_class = DosageDurationSerializer
+    
+class DosageDurationListView(ListAPIView):
+    queryset = DosageDuration.objects.all()
+    serializer_class = DosageDurationSerializer
+    
+class PathologyCategoryCreateAPIView(generics.CreateAPIView):
+    queryset = PathologyCategory.objects.all()
+    serializer_class = PathologyCategorySerializer
+    
+class PathologyCategoryListView(ListAPIView):
+    queryset = PathologyCategory.objects.all()
+    serializer_class = PathologyCategorySerializer
+    
+class PathologyUnitCreateAPIView(generics.CreateAPIView):
+    queryset = PathologyUnit.objects.all()
+    serializer_class = PathologyUnitSerializer
+    
+class PathologyUnitListView(ListAPIView):
+    queryset = PathologyUnit.objects.all()
+    serializer_class = PathologyUnitSerializer
+    
+class PathologyParameterCreateAPIView(generics.CreateAPIView):
+    queryset = PathologyParameter.objects.all()
+    serializer_class = PathologyParameterSerializer
+    
+class PathologyParameterListView(ListAPIView):
+    queryset = PathologyParameter.objects.all()
+    serializer_class = PathologyParameterSerializer
+    
+class RadiologyCategoryCreateAPIView(generics.CreateAPIView):
+    queryset = RadiologyCategory.objects.all()
+    serializer_class = RadiologyCategorySerializer
+    
+class RadiologyCategoryListView(ListAPIView):
+    queryset = RadiologyCategory.objects.all()
+    serializer_class = RadiologyCategorySerializer
+    
+class RadiologyUnitCreateAPIView(generics.CreateAPIView):
+    queryset = RadiologyUnit.objects.all()
+    serializer_class = RadiologyUnitSerializer
+    
+class RadiologyUnitListView(ListAPIView):
+    queryset = RadiologyUnit.objects.all()
+    serializer_class = RadiologyUnitSerializer
+    
+class RadiologyParameterCreateAPIView(generics.CreateAPIView):
+    queryset = RadiologyParameter.objects.all()
+    serializer_class = RadiologyParameterSerializer
+    
+class RadiologyParameterListView(ListAPIView):
+    queryset = RadiologyParameter.objects.all()
+    serializer_class = RadiologyParameterSerializer
+    
+class BloodBankProductCreateAPIView(generics.CreateAPIView):
+    queryset = BloodBank_Products.objects.all()
+    serializer_class = BloodBankProductSerializer
+    
+class BloodBankProductListView(ListAPIView):
+    queryset = BloodBank_Products.objects.all()
+    serializer_class = BloodBankProductSerializer
+    
+class SymptomsTypeCreateAPIView(generics.CreateAPIView):
+    queryset = SymptomsType.objects.all()
+    serializer_class = SymptomsTypeSerializer
+    
+class SymptomsTypeListView(ListAPIView):
+    queryset = SymptomsType.objects.all()
+    serializer_class = SymptomsTypeSerializer
+    
+class SymptomsHeadCreateAPIView(generics.CreateAPIView):
+    queryset = SymptomsHead.objects.all()
+    serializer_class = SymptomsHeadSerializer
+    
+class SymptomsHeadListView(ListAPIView):
+    queryset = SymptomsHead.objects.all()
+    serializer_class = SymptomsHeadSerializer
