@@ -135,3 +135,74 @@ class SymptomsHeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = SymptomsHead
         fields = '__all__'
+        
+class FindingCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FindingCategory
+        fields = '__all__'
+        
+class FindingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Finding
+        fields = '__all__'
+        
+class IncomeHeadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IncomeHead
+        fields = '__all__'
+        
+class ExpenseHeadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExpenseHead
+        fields = '__all__'
+        
+class LeaveTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LeaveType
+        fields = '__all__'
+        
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = '__all__'
+        
+class DesignationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Designation
+        fields = '__all__'
+        
+class SpecialistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Specialist
+        fields = '__all__'
+        
+class ReferralCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReferralCategory
+        fields = '__all__'
+        
+class ReferralCommissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReferralCommission
+        fields = '__all__'
+        
+class ShiftSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Shift
+        fields = '__all__'
+        
+class ItemCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemCategory
+        fields = '__all__'
+        
+class ItemStoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemStore
+        fields = '__all__'
+        
+class ItemSupplierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemSupplier
+        fields = '__all__'
+        

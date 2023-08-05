@@ -75,7 +75,7 @@ class BedGroup(models.Model):
     description = models.TextField()
     
     def __str__(self):
-        return f"{self.name}-{self.floor.name}"
+        return f"{self.name}-{self.floor}"
     
 class BedType(models.Model):
     name = models.CharField(max_length=50)
@@ -239,4 +239,125 @@ class SymptomsHead(models.Model):
     def __str__(self):
         return self.symptoms_head
     
+class FindingCategory(models.Model):
+    finding_category = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.finding_category
+    
+class Finding(models.Model):
+    finding = models.CharField(max_length=100)
+    category = models.ForeignKey(FindingCategory,on_delete=models.CASCADE)
+    description = models.TimeField()
+
+    def __str__(self):
+        return self.finding
+    
+class IncomeHead(models.Model):
+    income_head = models.CharField(max_length=100)
+    description = models.TimeField()
+    
+    def __str__(self):
+        return self.income_head
+    
+class ExpenseHead(models.Model):
+    expense_head = models.CharField(max_length=100)
+    description = models.TimeField()
+    
+    def __str__(self):
+        return self.expense_head
+    
+class LeaveType(models.Model):
+    leave_type = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.leave_type
+    
+class Department(models.Model):
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+    
+class Designation(models.Model):
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+    
+class Specialist(models.Model):
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+    
+class ReferralCategory(models.Model):
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+    
+class ReferralCommission(models.Model):
+    category = models.ForeignKey(ReferralCategory, on_delete=models.CASCADE)
+    standard_commission = models.CharField(max_length=100)
+    opd = models.CharField(max_length=100, null=True, blank=True, default=None)
+    ipd = models.CharField(max_length=100, null=True, blank=True, default=None)
+    pharmacy = models.CharField(max_length=100, null=True, blank=True, default=None)
+    radiology = models.CharField(max_length=100, null=True, blank=True, default=None)
+    pathology = models.CharField(max_length=100, null=True, blank=True, default=None)
+    bloodbank = models.CharField(max_length=100, null=True, blank=True, default=None)
+    ambulance = models.CharField(max_length=100, null=True, blank=True, default=None)
+
+    def __str__(self):
+        return str(self.category)
+
+    def save(self, *args, **kwargs):
+        existing_commission = ReferralCommission.objects.filter(category=self.category).first()
+
+        if existing_commission:
+            self.opd = self.opd if self.opd else existing_commission.opd
+            self.ipd = self.ipd if self.ipd else existing_commission.ipd
+            self.pharmacy = self.pharmacy if self.pharmacy else existing_commission.pharmacy
+            self.radiology = self.radiology if self.radiology else existing_commission.radiology
+            self.pathology = self.pathology if self.pathology else existing_commission.pathology
+            self.bloodbank = self.bloodbank if self.bloodbank else existing_commission.bloodbank
+            self.ambulance = self.ambulance if self.ambulance else existing_commission.ambulance
+
+        super(ReferralCommission, self).save(*args, **kwargs)
+    
+class Shift(models.Model):
+    name = models.CharField(max_length=100)
+    time_from = models.TimeField(auto_created=False)
+    time_to = models.TimeField(auto_created=False)
+    
+    def __str__(self):
+        return f"{self.name} ({self.time_from}-{self.time_to})"
+    
+class ItemCategory(models.Model):
+    item_category = models.CharField(max_length=100)
+    description = models.TimeField()
+    
+    def __str__(self):
+        return self.item_category
+    
+class ItemStore(models.Model):
+    item_store_name = models.CharField(max_length=100)
+    item_store_code = models.CharField(max_length=100)
+    description = models.TimeField()
+    
+    def __str__(self):
+        return self.item_store_name
+    
+class ItemSupplier(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    contact_person_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    contact_person_phone = models.CharField(max_length=100)
+    contact_person_email = models.EmailField(unique=True)
+    description = models.TimeField()
+    
+    def __str__(self):
+        return self.name
     

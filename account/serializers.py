@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.hashers import make_password
 
-
         
 class SuperAdminCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -154,11 +153,6 @@ class InPatientSerializer(serializers.ModelSerializer):
         model = InPatient
         fields = '__all__'   
         
-class MedicineSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Medicine
-        fields = '__all__'  
-        
 class TestParameterSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestParameter
@@ -193,12 +187,45 @@ class PathologyTestSerializer(serializers.ModelSerializer):
                 data['reference_range'] = '0.5 to 3.0'
                 data['unit'] = '(U/L)'
 
-        return data
-
-class BloodDonorSerializer(serializers.ModelSerializer):
+        return data 
+        
+class VisitorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BloodDonor
-        fields = '__all__' 
+        model = Visitor
+        fields = '__all__'
+        
+class DispatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dispatch
+        fields = '__all__'
+        
+class ReceiveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Receive
+        fields = '__all__'
+        
+class ComplainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Complain
+        fields = '__all__'
+        
+class CallLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CallLog
+        fields = '__all__'
+        
+class MedicineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medicine
+        fields = '__all__'  
+        
+class PurchaseMedicineSerializer(serializers.ModelSerializer):
+    medicine_name = MedicineSerializer(source='medicine', read_only=True)
+    tax = serializers.FloatField(source='medicine.tax', read_only=True)
+
+    class Meta:
+        model = PurchaseMedicine
+        fields = '__all__'
         
 class PlateletsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -268,35 +295,10 @@ class ComponentsSerializer(serializers.ModelSerializer):
         )
 
         return components
-    
+        
 class AmbulanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ambulance
-        fields = '__all__'
-        
-class VisitorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Visitor
-        fields = '__all__'
-        
-class CallLogSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CallLog
-        fields = '__all__'
-        
-class ReceiveSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Receive
-        fields = '__all__'
-        
-class DispatchSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Dispatch
-        fields = '__all__'
-        
-class ComplainSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Complain
         fields = '__all__'
         
 class BirthRecordSerializer(serializers.ModelSerializer):
@@ -317,4 +319,29 @@ class TPASerializer(serializers.ModelSerializer):
 class IncomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Income
+        fields = '__all__'
+        
+class ExpenseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Expense
+        fields = '__all__'
+        
+class ReferralPersonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReferralPerson
+        fields = '__all__'
+        
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = '__all__'
+        
+class ItemStockSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemStock
+        fields = '__all__'
+        
+class BloodDonorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BloodDonor
         fields = '__all__'

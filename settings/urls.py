@@ -82,4 +82,47 @@ urlpatterns = [
     
     path('api/create-symptomshead/', SymptomsHeadCreateAPIView.as_view(), name='create_symptomshead'),
     path('api/symptomshead/', SymptomsHeadListView.as_view(), name='symptomshead-list'),
+    
+    path('api/create-findingcategory/', FindingCategoryCreateAPIView.as_view(), name='create_findingcategory'),
+    path('api/findingcategory/', FindingCategoryListView.as_view(), name='findingcategory-list'),
+    
+    path('api/create-finding/', FindingCreateAPIView.as_view(), name='create_finding'),
+    path('api/finding/', FindingListView.as_view(), name='finding-list'),
+    
+    path('api/create-incomehead/', IncomeHeadCreateAPIView.as_view(), name='create_incomehead'),
+    path('api/incomehead/', IncomeHeadListView.as_view(), name='incomehead-list'),
+    
+    path('api/create-expensehead/', ExpenseHeadCreateAPIView.as_view(), name='create_expensehead'),
+    path('api/expensehead/', ExpenseHeadListView.as_view(), name='expensehead-list'),
+    
+    path('api/create-leavetype/', LeaveTypeCreateAPIView.as_view(), name='create_leavetype'),
+    path('api/leavetype/', LeaveTypeListView.as_view(), name='leavetype-list'),
+    
+    path('api/create-department/', DepartmentCreateAPIView.as_view(), name='create_department'),
+    path('api/department/', DepartmentListView.as_view(), name='department-list'),
+    
+    path('api/create-designation/', DesignationCreateAPIView.as_view(), name='create_designation'),
+    path('api/designation/', DesignationListView.as_view(), name='designation-list'),
+    
+    path('api/create-specialist/', SpecialistCreateAPIView.as_view(), name='create_specialist'),
+    path('api/specialist/', SpecialistListView.as_view(), name='specialist-list'),
+    
+    path('api/create-referralcategory/', ReferralCategoryCreateAPIView.as_view(), name='create_referralcategory'),
+    path('api/referralcategory/', ReferralCategoryListView.as_view(), name='referralcategory-list'),
+    
+    path('api/create-referralcommission/', ReferralCommissionCreateAPIView.as_view(), name='create_referralcommission'),
+    path('api/referralcommission/', ReferralCommissionListView.as_view(), name='referralcommission-list'),
+    
+    path('api/create-shift/', ShiftCreateAPIView.as_view(), name='create_shift'),
+    path('api/shift/', ShiftListView.as_view(), name='shift-list'),
+    
+    path('api/create-itemcategory/', ItemCategoryCreateAPIView.as_view(), name='create_itemcategory'),
+    path('api/itemcategory/', ItemCategoryListView.as_view(), name='itemcategory-list'),
+    
+    path('api/create-itemstore/', ItemStoreCreateAPIView.as_view(), name='create_itemstore'),
+    path('api/itemstore/', ItemStoreListView.as_view(), name='itemstore-list'),
+    
+    path('api/create-itemsupplier/', ItemSupplierCreateAPIView.as_view(), name='create_itemsupplier'),
+    path('api/itemsupplier/', ItemSupplierListView.as_view(), name='itemsupplier-list'),
+    
 ]

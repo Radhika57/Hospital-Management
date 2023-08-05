@@ -219,3 +219,115 @@ class SymptomsHeadCreateAPIView(generics.CreateAPIView):
 class SymptomsHeadListView(ListAPIView):
     queryset = SymptomsHead.objects.all()
     serializer_class = SymptomsHeadSerializer
+    
+class FindingCategoryCreateAPIView(generics.CreateAPIView):
+    queryset = FindingCategory.objects.all()
+    serializer_class = FindingCategorySerializer
+    
+class FindingCategoryListView(ListAPIView):
+    queryset = FindingCategory.objects.all()
+    serializer_class = FindingCategorySerializer
+    
+class FindingCreateAPIView(generics.CreateAPIView):
+    queryset = Finding.objects.all()
+    serializer_class = FindingSerializer
+    
+class FindingListView(ListAPIView):
+    queryset = Finding.objects.all()
+    serializer_class = FindingSerializer
+    
+class IncomeHeadCreateAPIView(generics.CreateAPIView):
+    queryset = IncomeHead.objects.all()
+    serializer_class = IncomeHeadSerializer
+    
+class IncomeHeadListView(ListAPIView):
+    queryset = IncomeHead.objects.all()
+    serializer_class = IncomeHeadSerializer
+    
+class ExpenseHeadCreateAPIView(generics.CreateAPIView):
+    queryset = ExpenseHead.objects.all()
+    serializer_class = ExpenseHeadSerializer
+    
+class ExpenseHeadListView(ListAPIView):
+    queryset = ExpenseHead.objects.all()
+    serializer_class = ExpenseHeadSerializer
+    
+class LeaveTypeCreateAPIView(generics.CreateAPIView):
+    queryset = LeaveType.objects.all()
+    serializer_class = LeaveTypeSerializer
+    
+class LeaveTypeListView(ListAPIView):
+    queryset = LeaveType.objects.all()
+    serializer_class = LeaveTypeSerializer
+    
+class DepartmentCreateAPIView(generics.CreateAPIView):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
+    
+class DepartmentListView(ListAPIView):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
+    
+class DesignationCreateAPIView(generics.CreateAPIView):
+    queryset = Designation.objects.all()
+    serializer_class = DesignationSerializer
+    
+class DesignationListView(ListAPIView):
+    queryset = Designation.objects.all()
+    serializer_class = DesignationSerializer
+    
+class SpecialistCreateAPIView(generics.CreateAPIView):
+    queryset = Specialist.objects.all()
+    serializer_class = SpecialistSerializer
+    
+class SpecialistListView(ListAPIView):
+    queryset = Specialist.objects.all()
+    serializer_class = SpecialistSerializer
+    
+class ReferralCategoryCreateAPIView(generics.CreateAPIView):
+    queryset = ReferralCategory.objects.all()
+    serializer_class = ReferralCategorySerializer
+    
+class ReferralCategoryListView(ListAPIView):
+    queryset = ReferralCategory.objects.all()
+    serializer_class = ReferralCategorySerializer
+    
+class ReferralCommissionCreateAPIView(generics.CreateAPIView):
+    queryset = ReferralCommission.objects.all()
+    serializer_class = ReferralCommissionSerializer
+    
+class ReferralCommissionListView(ListAPIView):
+    queryset = ReferralCommission.objects.all()
+    serializer_class = ReferralCommissionSerializer
+    
+class ShiftCreateAPIView(generics.CreateAPIView):
+    queryset = Shift.objects.all()
+    serializer_class = ShiftSerializer
+    
+class ShiftListView(ListAPIView):
+    queryset = Shift.objects.all()
+    serializer_class = ShiftSerializer
+    
+class ItemCategoryCreateAPIView(generics.CreateAPIView):
+    queryset = ItemCategory.objects.all()
+    serializer_class = ItemCategorySerializer
+    
+class ItemCategoryListView(ListAPIView):
+    queryset = ItemCategory.objects.all()
+    serializer_class = ItemCategorySerializer
+    
+class ItemStoreCreateAPIView(generics.CreateAPIView):
+    queryset = ItemStore.objects.all()
+    serializer_class = ItemStoreSerializer
+    
+class ItemStoreListView(ListAPIView):
+    queryset = ItemStore.objects.all()
+    serializer_class = ItemStoreSerializer
+    
+class ItemSupplierCreateAPIView(generics.CreateAPIView):
+    queryset = ItemSupplier.objects.all()
+    serializer_class = ItemSupplierSerializer
+    
+class ItemSupplierListView(ListAPIView):
+    queryset = ItemSupplier.objects.all()
+    serializer_class = ItemSupplierSerializer
