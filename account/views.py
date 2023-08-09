@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView , RetrieveAPIView , DestroyAPIView , RetrieveUpdateAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -261,6 +261,23 @@ class PatientListView(ListAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
     
+class PatientUpdateView(RetrieveUpdateAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+    lookup_field = 'pk' 
+    
+class PatientDeleteView(DestroyAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+    lookup_field = 'pk' 
+    
+class PatientDetailView(RetrieveAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
 class DispatchCreateAPIView(generics.CreateAPIView):
     queryset = Dispatch.objects.all()
     serializer_class = DispatchSerializer
@@ -268,6 +285,23 @@ class DispatchCreateAPIView(generics.CreateAPIView):
 class DispatchListView(generics.ListAPIView):
     queryset = Dispatch.objects.all()
     serializer_class = DispatchSerializer
+    
+class DispatchUpdateView(RetrieveUpdateAPIView):
+    queryset = Dispatch.objects.all()
+    serializer_class = DispatchSerializer
+    lookup_field = 'pk' 
+    
+class DispatchDeleteView(DestroyAPIView):
+    queryset = Dispatch.objects.all()
+    serializer_class = DispatchSerializer
+    lookup_field = 'pk' 
+    
+class DispatchDetailView(RetrieveAPIView):
+    queryset = Dispatch.objects.all()
+    serializer_class = DispatchSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
     
 class ReceiveCreateAPIView(generics.CreateAPIView):
     queryset = Receive.objects.all()
@@ -277,6 +311,23 @@ class ReceiveListView(generics.ListAPIView):
     queryset = Receive.objects.all()
     serializer_class = ReceiveSerializer
     
+class ReceiveUpdateView(RetrieveUpdateAPIView):
+    queryset = Receive.objects.all()
+    serializer_class = ReceiveSerializer
+    lookup_field = 'pk' 
+    
+class ReceiveDeleteView(DestroyAPIView):
+    queryset = Receive.objects.all()
+    serializer_class = ReceiveSerializer
+    lookup_field = 'pk' 
+    
+class ReceiveDetailView(RetrieveAPIView):
+    queryset = Receive.objects.all()
+    serializer_class = ReceiveSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
 class ComplainCreateAPIView(generics.CreateAPIView):
     queryset = Complain.objects.all()
     serializer_class = ComplainSerializer
@@ -284,6 +335,23 @@ class ComplainCreateAPIView(generics.CreateAPIView):
 class ComplainListView(generics.ListAPIView):
     queryset = Complain.objects.all()
     serializer_class = ComplainSerializer
+    
+class ComplainUpdateView(RetrieveUpdateAPIView):
+    queryset = Complain.objects.all()
+    serializer_class = ComplainSerializer
+    lookup_field = 'pk' 
+    
+class ComplainDeleteView(DestroyAPIView):
+    queryset = Complain.objects.all()
+    serializer_class = ComplainSerializer
+    lookup_field = 'pk' 
+    
+class ComplainDetailView(RetrieveAPIView):
+    queryset = Complain.objects.all()
+    serializer_class = ComplainSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
     
 class CallLogCreateAPIView(generics.CreateAPIView):
     queryset = CallLog.objects.all()
@@ -293,6 +361,23 @@ class CallLogListView(generics.ListAPIView):
     queryset = CallLog.objects.all()
     serializer_class = CallLogSerializer
     
+class CallLogUpdateView(RetrieveUpdateAPIView):
+    queryset = CallLog.objects.all()
+    serializer_class = CallLogSerializer
+    lookup_field = 'pk' 
+    
+class CallLogDeleteView(DestroyAPIView):
+    queryset = CallLog.objects.all()
+    serializer_class = CallLogSerializer
+    lookup_field = 'pk' 
+    
+class CallLogDetailView(RetrieveAPIView):
+    queryset = CallLog.objects.all()
+    serializer_class = CallLogSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
 class MedicineCreateView(generics.CreateAPIView):
     queryset = Medicine.objects.all()
     serializer_class = MedicineSerializer
@@ -301,7 +386,24 @@ class MedicineListView(generics.ListAPIView):
     queryset = Medicine.objects.all()
     serializer_class = MedicineSerializer
     
-class PurchaseMedicineListView(generics.ListCreateAPIView):
+class MedicineUpdateView(RetrieveUpdateAPIView):
+    queryset = Medicine.objects.all()
+    serializer_class = MedicineSerializer
+    lookup_field = 'pk' 
+    
+class MedicineDeleteView(DestroyAPIView):
+    queryset = Medicine.objects.all()
+    serializer_class = MedicineSerializer
+    lookup_field = 'pk' 
+    
+class MedicineDetailView(RetrieveAPIView):
+    queryset = Medicine.objects.all()
+    serializer_class = MedicineSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
+class PurchaseMedicineCreateView(generics.CreateAPIView):
     queryset = PurchaseMedicine.objects.all()
     serializer_class = PurchaseMedicineSerializer
 
@@ -310,7 +412,28 @@ class PurchaseMedicineListView(generics.ListCreateAPIView):
         medicine_category = self.request.query_params.get('medicine_category', None)
         if medicine_category:
             queryset = queryset.filter(medicine_category=medicine_category)
-        return queryset   
+        return queryset 
+    
+class PurchaseMedicineListView(generics.ListAPIView):
+    queryset = PurchaseMedicine.objects.all()
+    serializer_class = PurchaseMedicineSerializer
+    
+class PurchaseMedicineUpdateView(RetrieveUpdateAPIView):
+    queryset = PurchaseMedicine.objects.all()
+    serializer_class = PurchaseMedicineSerializer
+    lookup_field = 'pk' 
+    
+class PurchaseMedicineDeleteView(DestroyAPIView):
+    queryset = PurchaseMedicine.objects.all()
+    serializer_class = PurchaseMedicineSerializer
+    lookup_field = 'pk' 
+    
+class PurchaseMedicineDetailView(RetrieveAPIView):
+    queryset = PurchaseMedicine.objects.all()
+    serializer_class = PurchaseMedicineSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################  
     
 class AmbulanceCreateAPIView(generics.CreateAPIView):
     queryset = Ambulance.objects.all()
@@ -320,6 +443,23 @@ class AmbulanceListView(generics.ListAPIView):
     queryset = Ambulance.objects.all()
     serializer_class = AmbulanceSerializer
     
+class AmbulanceUpdateView(RetrieveUpdateAPIView):
+    queryset = Ambulance.objects.all()
+    serializer_class = AmbulanceSerializer
+    lookup_field = 'pk' 
+    
+class AmbulanceDeleteView(DestroyAPIView):
+    queryset = Ambulance.objects.all()
+    serializer_class = AmbulanceSerializer
+    lookup_field = 'pk' 
+    
+class AmbulanceDetailView(RetrieveAPIView):
+    queryset = Ambulance.objects.all()
+    serializer_class = AmbulanceSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
 class BirthRecordCreateAPIView(generics.CreateAPIView):
     queryset = BirthRecord.objects.all()
     serializer_class = BirthRecordSerializer
@@ -327,6 +467,23 @@ class BirthRecordCreateAPIView(generics.CreateAPIView):
 class BirthRecordListView(generics.ListAPIView):
     queryset = BirthRecord.objects.all()
     serializer_class = BirthRecordSerializer
+    
+class BirthRecordUpdateView(RetrieveUpdateAPIView):
+    queryset = BirthRecord.objects.all()
+    serializer_class = BirthRecordSerializer
+    lookup_field = 'pk' 
+    
+class BirthRecordDeleteView(DestroyAPIView):
+    queryset = BirthRecord.objects.all()
+    serializer_class = BirthRecordSerializer
+    lookup_field = 'pk' 
+    
+class BirthRecordDetailView(RetrieveAPIView):
+    queryset = BirthRecord.objects.all()
+    serializer_class = BirthRecordSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
     
 class DeathRecordCreateAPIView(generics.CreateAPIView):
     queryset = DeathRecord.objects.all()
@@ -336,6 +493,23 @@ class DeathRecordListView(generics.ListAPIView):
     queryset = DeathRecord.objects.all()
     serializer_class = DeathRecordSerializer
     
+class DeathRecordUpdateView(RetrieveUpdateAPIView):
+    queryset = DeathRecord.objects.all()
+    serializer_class = DeathRecordSerializer
+    lookup_field = 'pk' 
+    
+class DeathRecordDeleteView(DestroyAPIView):
+    queryset = DeathRecord.objects.all()
+    serializer_class = DeathRecordSerializer
+    lookup_field = 'pk' 
+    
+class DeathRecordDetailView(RetrieveAPIView):
+    queryset = DeathRecord.objects.all()
+    serializer_class = DeathRecordSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
 class TPACreateAPIView(generics.CreateAPIView):
     queryset = TPA.objects.all()
     serializer_class = TPASerializer
@@ -343,6 +517,23 @@ class TPACreateAPIView(generics.CreateAPIView):
 class TPAListView(generics.ListAPIView):
     queryset = TPA.objects.all()
     serializer_class = TPASerializer
+    
+class TPAUpdateView(RetrieveUpdateAPIView):
+    queryset = TPA.objects.all()
+    serializer_class = TPASerializer
+    lookup_field = 'pk' 
+    
+class TPADeleteView(DestroyAPIView):
+    queryset = TPA.objects.all()
+    serializer_class = TPASerializer
+    lookup_field = 'pk' 
+    
+class TPADetailView(RetrieveAPIView):
+    queryset = TPA.objects.all()
+    serializer_class = TPASerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
     
 class IncomeCreateAPIView(generics.CreateAPIView):
     queryset = Income.objects.all()
@@ -352,6 +543,23 @@ class IncomeListView(ListAPIView):
     queryset = Income.objects.all()
     serializer_class = IncomeSerializer
     
+class IncomeUpdateView(RetrieveUpdateAPIView):
+    queryset = Income.objects.all()
+    serializer_class = IncomeSerializer
+    lookup_field = 'pk' 
+    
+class IncomeDeleteView(DestroyAPIView):
+    queryset = Income.objects.all()
+    serializer_class = IncomeSerializer
+    lookup_field = 'pk' 
+    
+class IncomeDetailView(RetrieveAPIView):
+    queryset = Income.objects.all()
+    serializer_class = IncomeSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
 class ExpenseCreateAPIView(generics.CreateAPIView):
     queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
@@ -359,6 +567,23 @@ class ExpenseCreateAPIView(generics.CreateAPIView):
 class ExpenseListView(ListAPIView):
     queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
+    
+class ExpenseUpdateView(RetrieveUpdateAPIView):
+    queryset = Expense.objects.all()
+    serializer_class = ExpenseSerializer
+    lookup_field = 'pk' 
+    
+class ExpenseDeleteView(DestroyAPIView):
+    queryset = Expense.objects.all()
+    serializer_class = ExpenseSerializer
+    lookup_field = 'pk' 
+    
+class ExpenseDetailView(RetrieveAPIView):
+    queryset = Expense.objects.all()
+    serializer_class = ExpenseSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
     
 class ReferralPersonCreateAPIView(generics.CreateAPIView):
     queryset = ReferralPerson.objects.all()
@@ -368,6 +593,23 @@ class ReferralPersonListView(ListAPIView):
     queryset = ReferralPerson.objects.all()
     serializer_class = ReferralPersonSerializer
     
+class ReferralPersonUpdateView(RetrieveUpdateAPIView):
+    queryset = ReferralPerson.objects.all()
+    serializer_class = ReferralPersonSerializer
+    lookup_field = 'pk' 
+    
+class ReferralPersonDeleteView(DestroyAPIView):
+    queryset = ReferralPerson.objects.all()
+    serializer_class = ReferralPersonSerializer
+    lookup_field = 'pk' 
+    
+class ReferralPersonDetailView(RetrieveAPIView):
+    queryset = ReferralPerson.objects.all()
+    serializer_class = ReferralPersonSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
 class ItemCreateAPIView(generics.CreateAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
@@ -375,6 +617,23 @@ class ItemCreateAPIView(generics.CreateAPIView):
 class ItemListView(ListAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+    
+class ItemUpdateView(RetrieveUpdateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    lookup_field = 'pk' 
+    
+class ItemDeleteView(DestroyAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    lookup_field = 'pk' 
+    
+class ItemDetailView(RetrieveAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
     
 class ItemStockCreateAPIView(generics.ListCreateAPIView):
     queryset = ItemStock.objects.all()
@@ -391,6 +650,23 @@ class ItemStockListView(ListAPIView):
     queryset = ItemStock.objects.all()
     serializer_class = ItemStockSerializer
     
+class ItemStockUpdateView(RetrieveUpdateAPIView):
+    queryset = ItemStock.objects.all()
+    serializer_class = ItemStockSerializer
+    lookup_field = 'pk' 
+    
+class ItemStockDeleteView(DestroyAPIView):
+    queryset = ItemStock.objects.all()
+    serializer_class = ItemStockSerializer
+    lookup_field = 'pk' 
+    
+class ItemStockDetailView(RetrieveAPIView):
+    queryset = ItemStock.objects.all()
+    serializer_class = ItemStockSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
+    
 class BloodDonorCreateView(generics.CreateAPIView):
     queryset = BloodDonor.objects.all()
     serializer_class = BloodDonorSerializer
@@ -398,6 +674,23 @@ class BloodDonorCreateView(generics.CreateAPIView):
 class BloodDonorListView(generics.ListAPIView):
     queryset = BloodDonor.objects.all()
     serializer_class = BloodDonorSerializer
+    
+class BloodDonorUpdateView(RetrieveUpdateAPIView):
+    queryset = BloodDonor.objects.all()
+    serializer_class = BloodDonorSerializer
+    lookup_field = 'pk' 
+    
+class BloodDonorDeleteView(DestroyAPIView):
+    queryset = BloodDonor.objects.all()
+    serializer_class = BloodDonorSerializer
+    lookup_field = 'pk' 
+    
+class BloodDonorDetailView(RetrieveAPIView):
+    queryset = BloodDonor.objects.all()
+    serializer_class = BloodDonorSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
     
 class PlateletsCreateAPIView(generics.CreateAPIView):
     queryset = Platelets.objects.all()
@@ -430,3 +723,20 @@ class ComponentsCreateAPIView(generics.CreateAPIView):
 class ComponentsListView(generics.CreateAPIView):
     queryset = Components.objects.all()
     serializer_class = ComponentsSerializer
+    
+class ComponentsUpdateView(RetrieveUpdateAPIView):
+    queryset = Components.objects.all()
+    serializer_class = ComponentsSerializer
+    lookup_field = 'pk' 
+    
+class ComponentsDeleteView(DestroyAPIView):
+    queryset = Components.objects.all()
+    serializer_class = ComponentsSerializer
+    lookup_field = 'pk' 
+    
+class ComponentsDetailView(RetrieveAPIView):
+    queryset = Components.objects.all()
+    serializer_class = ComponentsSerializer
+    lookup_field = 'pk'
+    
+#####################################################################################################
