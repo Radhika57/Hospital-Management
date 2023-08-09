@@ -186,7 +186,7 @@ class PathologyParameter(models.Model):
     parameter_name = models.CharField(max_length=100)
     referange_range = models.CharField(max_length=100)
     unit = models.ForeignKey(PathologyUnit,on_delete=models.CASCADE)
-    description = models.TimeField()
+    description = models.TextField()
 
     def __str__(self):
         return self.parameter_name
@@ -207,7 +207,7 @@ class RadiologyParameter(models.Model):
     parameter_name = models.CharField(max_length=100)
     referange_range = models.CharField(max_length=100)
     unit = models.ForeignKey(RadiologyUnit,on_delete=models.CASCADE)
-    description = models.TimeField()
+    description = models.TextField()
 
     def __str__(self):
         return self.parameter_name
@@ -234,7 +234,7 @@ class SymptomsType(models.Model):
 class SymptomsHead(models.Model):
     symptoms_head = models.CharField(max_length=100)
     symptoms_type = models.ForeignKey(SymptomsType,on_delete=models.CASCADE)
-    description = models.TimeField()
+    description = models.TextField()
 
     def __str__(self):
         return self.symptoms_head
@@ -248,21 +248,21 @@ class FindingCategory(models.Model):
 class Finding(models.Model):
     finding = models.CharField(max_length=100)
     category = models.ForeignKey(FindingCategory,on_delete=models.CASCADE)
-    description = models.TimeField()
+    description = models.TextField()
 
     def __str__(self):
         return self.finding
     
 class IncomeHead(models.Model):
     income_head = models.CharField(max_length=100)
-    description = models.TimeField()
+    description = models.TextField()
     
     def __str__(self):
         return self.income_head
     
 class ExpenseHead(models.Model):
     expense_head = models.CharField(max_length=100)
-    description = models.TimeField()
+    description = models.TextField()
     
     def __str__(self):
         return self.expense_head
@@ -335,7 +335,7 @@ class Shift(models.Model):
     
 class ItemCategory(models.Model):
     item_category = models.CharField(max_length=100)
-    description = models.TimeField()
+    description = models.TextField()
     
     def __str__(self):
         return self.item_category
@@ -343,7 +343,7 @@ class ItemCategory(models.Model):
 class ItemStore(models.Model):
     item_store_name = models.CharField(max_length=100)
     item_store_code = models.CharField(max_length=100)
-    description = models.TimeField()
+    description = models.TextField()
     
     def __str__(self):
         return self.item_store_name
@@ -356,7 +356,7 @@ class ItemSupplier(models.Model):
     address = models.CharField(max_length=100)
     contact_person_phone = models.CharField(max_length=100)
     contact_person_email = models.EmailField(unique=True)
-    description = models.TimeField()
+    description = models.TextField()
     
     def __str__(self):
         return self.name
