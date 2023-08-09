@@ -81,6 +81,16 @@ class MedicineDosageSerializer(serializers.ModelSerializer):
         model = MedicineDosage
         fields = '__all__'
         
+class MedicineCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicineCategory
+        fields = '__all__'
+        
+class MedicineSupplierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicineSupplier
+        fields = '__all__'
+        
 class DosageIntervalSerializer(serializers.ModelSerializer):
     class Meta:
         model = DosageInterval
