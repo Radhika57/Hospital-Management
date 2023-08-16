@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView , RetrieveAPIView , DestroyAPIView , RetrieveUpdateAPIView
+from rest_framework.generics import ListAPIView , RetrieveAPIView , DestroyAPIView , RetrieveUpdateAPIView ,CreateAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -12,179 +12,205 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework import generics
+from django.contrib.auth.hashers import make_password
 
-class SuperAdminRegisterAPIView(APIView):
-    serializer_class = SuperAdminCreateSerializer
+# class StaffRegistration(APIView):
+#     def post(self, request):
+#         data = request.data
+#         data['password'] = make_password(None)  # Generate a random password
+        
+#         serializer = CustomUserSerializer(data=data)
+        
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class StaffRegistration(CreateAPIView):
+    serializer_class = CustomUserSerializer  
     authentication_classes = []
     permission_classes = []
 
-    def post(self, request, format=None):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            
-            user = serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        email = serializer.validated_data.get('email')
+        dob = serializer.validated_data.get('dob')
+        
+        password = str(dob)  
+        hashed_password = make_password(password)
+        
+        print(password)
+        print(hashed_password)
+        
+        serializer.validated_data['username'] = email
+        serializer.validated_data['password'] = hashed_password
+        
+        user = serializer.save()
+        
+        refresh = RefreshToken.for_user(user)
+        response_data = {
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+            'user': serializer.data,
+        }
 
-            return Response(response_data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(response_data, status=status.HTTP_201_CREATED)
+
     
-class AdminRegisterView(APIView):
-    serializer_class = AdminCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = AdminCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "Admin registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class AdminRegisterView(APIView):
+#     serializer_class = AdminCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = AdminCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "Admin registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class DoctorRegisterView(APIView):
-    serializer_class = DoctorCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = DoctorCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "Doctor registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class DoctorRegisterView(APIView):
+#     serializer_class = DoctorCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = DoctorCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "Doctor registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class AccountantRegisterView(APIView):
-    serializer_class = AccountantCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = AccountantCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "Accountant registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class AccountantRegisterView(APIView):
+#     serializer_class = AccountantCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = AccountantCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "Accountant registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class ReceptionistRegisterView(APIView):
-    serializer_class = ReceptionistCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = ReceptionistCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "Receptionist registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class ReceptionistRegisterView(APIView):
+#     serializer_class = ReceptionistCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = ReceptionistCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "Receptionist registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class PharmacistRegisterView(APIView):
-    serializer_class = PharmacistCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = PharmacistCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "Pharmacist registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class PharmacistRegisterView(APIView):
+#     serializer_class = PharmacistCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = PharmacistCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "Pharmacist registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class PathologistRegisterView(APIView):
-    serializer_class = PathologistCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = PathologistCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "Pathologist registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class PathologistRegisterView(APIView):
+#     serializer_class = PathologistCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = PathologistCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "Pathologist registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class RadiologistRegisterView(APIView):
-    serializer_class = RadiologistCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = RadiologistCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "Radiologist registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class RadiologistRegisterView(APIView):
+#     serializer_class = RadiologistCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = RadiologistCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "Radiologist registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class PatientRegisterView(APIView):
-    serializer_class = PatientCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = PatientCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "Patient registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class PatientRegisterView(APIView):
+#     serializer_class = PatientCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = PatientCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "Patient registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class UserRegisterView(APIView):
-    serializer_class = UserCreateSerializer
-    authentication_classes = []
-    permission_classes = []
-    def post(self, request):
-        serializer = UserCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            user=serializer.save()
-            refresh = RefreshToken.for_user(user)
-            response_data = {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user': serializer.data,
-            }
-            return Response({"message": "User registration successful."}, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class UserRegisterView(APIView):
+#     serializer_class = UserCreateSerializer
+#     authentication_classes = []
+#     permission_classes = []
+#     def post(self, request):
+#         serializer = UserCreateSerializer(data=request.data)
+#         if serializer.is_valid():
+#             user=serializer.save()
+#             refresh = RefreshToken.for_user(user)
+#             response_data = {
+#                 'refresh': str(refresh),
+#                 'access': str(refresh.access_token),
+#                 'user': serializer.data,
+#             }
+#             return Response({"message": "User registration successful."}, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
 class CustomTokenObtainPairView(TokenObtainPairView):

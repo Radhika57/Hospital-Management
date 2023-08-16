@@ -211,19 +211,19 @@ class RadiologyParameter(models.Model):
 
     def __str__(self):
         return self.parameter_name
-    
-BLOODGROUP_TYPE = [
-    ('select','Select'),
-    ('component','Component'),
-    ('blood group','Blood Group')
-]
+
+class BloodBank_Type(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class BloodBank_Products(models.Model):
-    type = models.CharField(max_length=50,choices=BLOODGROUP_TYPE,default="select")
+    types = models.ForeignKey(BloodBank_Type,on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     
     def __str__(self):
-        return self.name
+        return self.name 
     
 class SymptomsType(models.Model):
     symptoms_type = models.CharField(max_length=100)

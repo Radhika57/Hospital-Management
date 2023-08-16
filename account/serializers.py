@@ -2,126 +2,142 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.hashers import make_password
 
-        
-class SuperAdminCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'password')
+        fields =  ('staff_id','role','designation','department','specialist',
+                   'first_name','last_name','father_name','mother_name','gender',
+                   'marital_status','blood_group','dob','date_of_joining','phone',
+                   'emergency_contact','email','photo','current_address','permanent_address'
+                   ,'qualification','work_experience','specialization','note','pan_number',
+                   'national_identification_number','local_identification_number','reference_contact',
+                   'epf_number','basic_salary','contract_type','work_shift','work_location','casual_leave',
+                   'privilege_leave','sick_leave','maternity_leave','paternity_leave','fever_leave','account_title',
+                   'bank_account_no','bank_name','ifsc_code','bank_branch_name','facebook_url','twitter_url',
+                   'linkedin_url','instagram_url','resume','joining_letter','other_document')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'superadmin'
-        return super().create(validated_data)
+          
+            
+# class SuperAdminCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
+
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
+
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'superadmin'
+#         return super().create(validated_data)
     
-class AdminCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class AdminCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'admin'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'admin'
+#         return super().create(validated_data)
     
-class DoctorCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class DoctorCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'doctor'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'doctor'
+#         return super().create(validated_data)
     
-class AccountantCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class AccountantCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'accountant'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'accountant'
+#         return super().create(validated_data)
     
-class ReceptionistCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class ReceptionistCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'receptionist'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'receptionist'
+#         return super().create(validated_data)
     
-class PharmacistCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class PharmacistCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'pharmacist'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'pharmacist'
+#         return super().create(validated_data)
     
-class PathologistCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class PathologistCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'pathologist'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'pathologist'
+#         return super().create(validated_data)
     
-class RadiologistCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class RadiologistCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'radiologist'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'radiologist'
+#         return super().create(validated_data)
     
-class PatientCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class PatientCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'patient'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'patient'
+#         return super().create(validated_data)
     
-class UserCreateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# class UserCreateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True)
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'password')
 
-    def create(self, validated_data):
-        validated_data['password'] = make_password(validated_data['password'])
-        validated_data['user_type'] = 'user'
-        return super().create(validated_data)
+#     def create(self, validated_data):
+#         validated_data['password'] = make_password(validated_data['password'])
+#         validated_data['user_type'] = 'user'
+#         return super().create(validated_data)
 
 
 class AppointmentSerializer(serializers.ModelSerializer):

@@ -653,6 +653,31 @@ class RadiologyParameterDetailView(RetrieveAPIView):
     lookup_field = 'pk'
     
 ##########################################################################################################
+
+class BloodBankTypeCreateAPIView(generics.CreateAPIView):
+    queryset = BloodBank_Type.objects.all()
+    serializer_class = BloodBankTypeSerializer
+    
+class BloodBankTypeListView(ListAPIView):
+    queryset = BloodBank_Type.objects.all()
+    serializer_class = BloodBankTypeSerializer
+    
+class BloodBankTypeUpdateView(RetrieveUpdateAPIView):
+    queryset = BloodBank_Type.objects.all()
+    serializer_class = BloodBankTypeSerializer
+    lookup_field = 'pk' 
+    
+class BloodBankTypeDeleteView(DestroyAPIView):
+    queryset = BloodBank_Type.objects.all()
+    serializer_class = BloodBankTypeSerializer
+    lookup_field = 'pk' 
+    
+class BloodBankTypeDetailView(RetrieveAPIView):
+    queryset = BloodBank_Type.objects.all()
+    serializer_class = BloodBankTypeSerializer
+    lookup_field = 'pk'
+    
+########################################################################################################
     
 class BloodBankProductCreateAPIView(generics.CreateAPIView):
     queryset = BloodBank_Products.objects.all()

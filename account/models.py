@@ -2,9 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from settings.models import *
 
-
-class CustomUser(AbstractUser):
-    USER_TYPES = (
+USER_TYPES = [
         ('superadmin', 'Super Admin'),
         ('admin', 'Admin'),
         ('doctor', 'Doctor'),
@@ -15,11 +13,138 @@ class CustomUser(AbstractUser):
         ('radiologist', 'Radiologist'),
         ('patient', 'Patient'),
         ('user', 'User')
-    )
-    user_type = models.CharField(max_length=20, choices=USER_TYPES, default='user')
+]
+
+DESIGNATION_CHOICES = [
+        ('doctor', 'Doctor'),
+        ('admin', 'Admin'),
+        ('it admin', 'IT Admin'),
+        ('pathologist', 'Pathologist'),
+        ('pharmacist', 'Pharmacist'),
+        ('radiologist', 'Radiologist'),
+        ('nurse','Nurse'),
+        ('accountant', 'Accountant'),
+        ('receptionist', 'Receptionist'),
+        ('driver','Driver'),
+        ('technical head','Technical Head')
+    ]
+
+DEPARTMENT_CHOICES = [
+        ('ot', 'OT'),
+        ('doctor', 'Doctor'),
+        ('admin', 'Admin'),
+        ('ipd', 'IPD'),
+        ('opd', 'OPD'),
+        ('icu', 'ICU'),
+        ('blood_bank', 'Blood_Bank'),
+        ('pathology', 'Pathology'),
+        ('radiology', 'Radiology'),
+        ('pharmacy','Pharmacy'),
+        ('reception', 'Reception'),
+        ('human resource', 'Human Resource'),
+        ('gynecology','Gynecology'),
+        ('finance','Finance'),
+        ('emergency','Emergency'),
+        ('cardiology','Cardiology'),
+        ('burn care','BURN CARE'),
+        ('nicu','NICU'),
+        ('nursing department','Nursing Department')
+    ]
+
+SPECIALIST_CHOICES = [
+    ('cardiologist', 'Cardiologist'),
+    ('dermatologists', 'Dermatologists'),
+    ('gastroenterologists', 'Gastroenterologists'),
+    ('ophthalmologists', 'Ophthalmologists'),
+    ('neuroradiology', 'Neuroradiology')
+]
+
+GENDER_CHOICES = [
+    ('select', 'Select'),
+    ('male', 'Male'),
+    ('female', 'Female'),
+    ('transgender', 'Transgender')
+] 
+
+MARITAL_CHOICES = [
+    ('select', 'Select'),
+    ('single', 'Single'),
+    ('married', 'Married'),
+    ('widowed', 'Widowed'),
+    ('separated', 'Separated'),
+    ('not specified', 'Not Specified')
+]  
+BLOODGROUP_CHOICES = [
+    ('O+','O+'),
+    ('A+','A+'),
+    ('B+','B+'),
+    ('AB+','AB+'),
+    ('O-','O-'),
+    ('A-','A-'),
+    ('B-','B-'),
+    ('AB-','AB-'),
+]
+
+CONTRACT_CHOICES = [
+    ('permanent','Permanent'),
+    ('probation','Probation')
+]
+
+class CustomUser(AbstractUser):
+    staff_id = models.CharField(max_length=20,unique=True)
+    role = models.CharField(max_length=20, choices=USER_TYPES, default='user')
+    designation = models.CharField(max_length=50,choices=DESIGNATION_CHOICES)
+    department = models.CharField(max_length=50,choices=DEPARTMENT_CHOICES)
+    specialist = models.CharField(max_length=50,choices=SPECIALIST_CHOICES)
+    first_name = models.CharField(max_length=50,null=True,blank=True)
+    last_name = models.CharField(max_length=50,null=True,blank=True)
+    father_name = models.CharField(max_length=50,null=True,blank=True)
+    mother_name = models.CharField(max_length=50,null=True,blank=True)
+    gender = models.CharField(max_length=50,choices=GENDER_CHOICES)
+    marital_status = models.CharField(max_length=50,choices=MARITAL_CHOICES)
+    blood_group = models.CharField(max_length=20,choices=BLOODGROUP_CHOICES)
+    dob = models.DateField(auto_created=False,null=True,blank=True)
+    date_of_joining = models.DateField(auto_created=False,null=True,blank=True)
+    phone = models.CharField(max_length=20,null=True,blank=True)
+    emergency_contact = models.CharField(max_length=20,null=True,blank=True)
+    email = models.EmailField(unique=True)
+    photo = models.FileField(upload_to='images/staff/',null=True,blank=True)
+    current_address = models.TextField(null=True,blank=True)
+    permanent_address = models.TextField(null=True,blank=True)
+    qualification = models.TextField(null=True,blank=True)
+    work_experience = models.TextField(null=True,blank=True)
+    specialization = models.TextField(null=True,blank=True)
+    note = models.TextField(null=True,blank=True)
+    pan_number = models.CharField(max_length=50,null=True,blank=True)
+    national_identification_number = models.CharField(max_length=50,null=True,blank=True)
+    local_identification_number = models.CharField(max_length=50,null=True,blank=True)
+    reference_contact = models.CharField(max_length=50,null=True,blank=True)
+    epf_number = models.CharField(max_length=50,null=True,blank=True)
+    basic_salary = models.CharField(max_length=50,null=True,blank=True)
+    contract_type = models.CharField(max_length=20,choices=CONTRACT_CHOICES)
+    work_shift = models.CharField(max_length=50,null=True,blank=True)
+    work_location = models.CharField(max_length=50,null=True,blank=True)
+    casual_leave = models.PositiveIntegerField(null=True,blank=True)
+    privilege_leave = models.PositiveIntegerField(null=True,blank=True)
+    sick_leave = models.PositiveIntegerField(null=True,blank=True)
+    maternity_leave = models.PositiveIntegerField(null=True,blank=True)
+    paternity_leave = models.PositiveIntegerField(null=True,blank=True)
+    fever_leave = models.PositiveIntegerField(null=True,blank=True)
+    account_title = models.CharField(max_length=100,null=True,blank=True)
+    bank_account_no = models.CharField(max_length=100,null=True,blank=True)
+    bank_name = models.CharField(max_length=100,null=True,blank=True)
+    ifsc_code = models.CharField(max_length=100,null=True,blank=True)
+    bank_branch_name = models.CharField(max_length=100,null=True,blank=True)
+    facebook_url = models.URLField(null=True,blank=True)
+    twitter_url = models.URLField(null=True,blank=True)
+    linkedin_url = models.URLField(null=True,blank=True)
+    instagram_url = models.URLField(null=True,blank=True)
+    resume = models.FileField(upload_to='images/staff/resume/',null=True,blank=True)
+    joining_letter = models.FileField(upload_to='images/staff/joining_letter',null=True,blank=True)
+    other_document = models.FileField(upload_to='images/staff/other_document',null=True,blank=True)
     
     def __str__(self):
-        return self.username
+        return self.email
  
 SHIFT_CHOICES = [
     ('morning', 'Morning'),
@@ -78,21 +203,6 @@ class Appointment(models.Model):
     def __str__(self):
         return str(self.id)
  
-GENDER_CHOICES = [
-    ('select', 'Select'),
-    ('male', 'Male'),
-    ('female', 'Female'),
-    ('transgender', 'Transgender')
-] 
-
-MARITAL_CHOICES = [
-    ('select', 'Select'),
-    ('single', 'Single'),
-    ('married', 'Married'),
-    ('widowed', 'Widowed'),
-    ('separated', 'Separated'),
-    ('not specified', 'Not Specified')
-]
   
 class Patient(models.Model):
     name = models.CharField(max_length=30) 

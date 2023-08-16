@@ -131,6 +131,11 @@ class RadiologyParameterSerializer(serializers.ModelSerializer):
         model = RadiologyParameter
         fields = '__all__'
         
+class BloodBankTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BloodBank_Type
+        fields = '__all__'
+        
 class BloodBankProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = BloodBank_Products

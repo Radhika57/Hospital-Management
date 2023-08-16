@@ -164,6 +164,12 @@ urlpatterns = [
     path('api/bloodbankproducts/<int:pk>/delete/', BloodBankProductDeleteView.as_view(), name='bloodbankproducts-delete'),
     path('api/bloodbankproducts/<int:pk>/detail/', BloodBankProductDetailView.as_view(), name='bloodbankproducts-detail'),
     
+    path('api/create-bloodbanktype/', BloodBankTypeCreateAPIView.as_view(), name='create_bloodbanktype'),
+    path('api/bloodbanktype/', BloodBankTypeListView.as_view(), name='bloodbanktype-list'),
+    path('api/bloodbanktype/<int:pk>/', BloodBankTypeUpdateView.as_view(), name='bloodbanktype-update'),
+    path('api/bloodbanktype/<int:pk>/delete/', BloodBankTypeDeleteView.as_view(), name='bloodbanktype-delete'),
+    path('api/bloodbanktype/<int:pk>/detail/', BloodBankTypeDetailView.as_view(), name='bloodbanktype-detail'),
+    
     path('api/create-symptomstype/', SymptomsTypeCreateAPIView.as_view(), name='create_symptomstype'),
     path('api/symptomstype/', SymptomsTypeListView.as_view(), name='symptomstype-list'),
     path('api/symptomstype/<int:pk>/', SymptomsTypeUpdateView.as_view(), name='symptomstype-update'),
